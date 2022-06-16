@@ -6,9 +6,9 @@ response = requests.get('https://api.publicapis.org/entries')
 
 obj = response.json()
 
-api_objs = [x['API'] for x in obj['entries'] if x['API'] != 'null']
+api_objs = [x['API'] for x in obj['entries'] if x['API'] != 'null'] # list comprehension
 
-api_names = [x for x in api_objs if x[0] == 'S']
+api_names = [x for x in api_objs if x[0] == 'S'] # selecting just those that begin with S
 
 api_ids = []
 for i in range(len(api_names)):
@@ -16,10 +16,11 @@ for i in range(len(api_names)):
 
 apiLen = len(api_ids)
 pprint(apiLen)
+pprint(api_names) 
 
-# define connection and connect to database
+# define connection and connect to sqlite database
 
-conn = sqlite3.connect('../pythonProject2/storage.db')
+conn = sqlite3.connect('../pythonProject2/storage.db') # need to redefine this
 
 cursor = conn.cursor()
 # drop the table to create new one
